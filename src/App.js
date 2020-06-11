@@ -1,21 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import styled from "styled-components"
 
 import axios from 'axios'
 import { API_KEY } from './secrets'
 
 import Photo from './Photo'
-
-const StyledH1 = styled.h1`
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  color: blue;
-`;
-const StyledDiv = styled.div`
-  display: flex;
-  
-`;
+import MarsImages from './MarsImages'
+import HeaderStyling from './HeaderStyling'
 
 function App() {
   const [nasaPhoto, setNasaPhoto] = useState('')
@@ -25,7 +16,7 @@ function App() {
   useEffect(() => {
     axios.get(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
       .then(res => {
-        console.log(res.data)
+        //console.log(res.data)
         setNasaPhoto(res.data)
       })
       .catch(err => {
@@ -36,37 +27,25 @@ function App() {
   useEffect(() => {
     axios.get(`https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?earth_date=2015-6-3&api_key=${API_KEY}`)
       .then(res => {
-        console.log(res.data.photos)
+        //console.log(res.data.photos)
         setNasaPhotoCollection(res.data.photos)
       })
       .catch(err => {
         debugger
       })
   }, []) 
-
-  const Image = ({ info }) => (
-    <div className='marsImages'>
-      <img key={info.id} src={info.img_src} alt={info.id} />
-    </div>
-    )
     
   return (
     <div className="App">
       <div>
-        <StyledH1>NASA photo of the day</StyledH1>
+        <HeaderStyling textColorBlue>NASA photo of the day</HeaderStyling>
         {
           <Photo nasaPhoto={nasaPhoto} />
         }
       </div>
       <div className="container">
-        <StyledH1>Mars Image Collection</StyledH1>
-        <StyledDiv className="marsPhotos">
-          {
-            nasaPhotoCollection.map(img => {
-              return <Image key={img.id} info={img} />
-            })
-          }
-        </StyledDiv>
+        <HeaderStyling subTextSize>Mars Image Collection</HeaderStyling>
+        <MarsImages nasaPhotoCollection={nasaPhotoCollection} />
       </div>
     </div>
   );
