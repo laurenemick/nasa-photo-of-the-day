@@ -14,6 +14,7 @@ const StyledH1 = styled.h1`
 `;
 const StyledDiv = styled.div`
   display: flex;
+  
 `;
 
 function App() {
@@ -57,15 +58,15 @@ function App() {
           <Photo nasaPhoto={nasaPhoto} />
         }
       </div>
-      <div className="Container">
+      <div className="container">
         <StyledH1>Mars Image Collection</StyledH1>
-        <div className="MarsPhotos">
+        <StyledDiv className="marsPhotos">
           {
             nasaPhotoCollection.map(img => {
               return <Image key={img.id} info={img} />
             })
           }
-        </div>
+        </StyledDiv>
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  box-sizing: border-box;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +37,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+.marsImages .PhotoOfTheDay {
+  width: 100%;
+}
+
+.marsImages img  {
+  width: 80%;
+  border-radius: 3px;
+}
+
+.PhotoOfTheDay img {
+  width: 80%;
+  border-radius: 3px;
 }
