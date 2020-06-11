@@ -1,10 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
+import styled from "styled-components"
 
 import axios from 'axios'
 import { API_KEY } from './secrets'
 
 import Photo from './Photo'
+
+const StyledH1 = styled.h1`
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  color: blue;
+`;
 
 function App() {
   const [nasaPhoto, setNasaPhoto] = useState('')
@@ -35,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <h1>NASA photo of the day</h1>
+      <StyledH1>NASA photo of the day</StyledH1>
       {
         <Photo nasaPhoto={nasaPhoto} />
       }
